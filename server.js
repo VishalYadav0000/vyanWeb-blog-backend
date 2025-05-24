@@ -4,10 +4,17 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const app = express();
-app.use(cors({
-  origin: "https://vyanweb-frontend.onrender.com",
-  credentials: true
-}));
+app.use(cors());
+
+const corsOptions = {
+  origin: [
+      'http://localhost:5173',
+      "https://vyanweb-frontend.onrender.com"
+  ],
+  credentials: true,
+  optionSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use("/api", require("./routes/authRoutes"));
